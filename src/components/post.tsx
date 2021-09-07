@@ -8,7 +8,7 @@ export const PostButton = () => {
     const cssStyle = useStyles();
     const [modalIsOpen, setModalIsOpen] = useState(false);
     return (
-        <>
+        <form onSubmit>
         <Fab color="primary" aria-label="add" onClick={()=>setModalIsOpen(true)} className={cssStyle.postCommentButton}>
             <AddBoxOutlined />
         </Fab>
@@ -18,7 +18,7 @@ export const PostButton = () => {
             <PostForm />
         </Modal>
         </CardContent>
-        </>
+        </form>
     )
 }
 const PostForm = () => {

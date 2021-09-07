@@ -3,12 +3,21 @@ import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import { PostAddOutlined } from "@material-ui/icons";
-import React, { useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import useStyles from "../components/styles";
+
+const createPostHandler = () => {
+
+}
+
 export const CreatePost = () => {
   const cssClasses = useStyles();
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
+  const handleChange = ( e : SyntheticEvent) => {
+    e.preventDefault();
+    alert(`submitting post title : ${title} description : ${desc} `);
+  }
   return (
     <Grid
       container
@@ -18,6 +27,7 @@ export const CreatePost = () => {
     >
       <form
         method="POST"
+        onSubmit = {handleChange}
         autoComplete="off"
         className={cssClasses.createPostForm}
       >
@@ -29,6 +39,7 @@ export const CreatePost = () => {
           label="Enter post title "
           id="standard-required"
           className={cssClasses.createPostFormElement}
+          required
         />
         <TextField
           value={desc}
@@ -40,8 +51,9 @@ export const CreatePost = () => {
           maxRows={10}
           label="Enter post description"
           className={cssClasses.createPostFormElement}
+          required
         />
-        <Button color="primary" variant="contained" disableElevation startIcon={<PostAddOutlined />}>
+        <Button type="submit" color="primary" variant="contained" disableElevation startIcon={<PostAddOutlined />}>
           Create Post
         </Button>
         <Link href="/" variant="button">
